@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Имя Фамилия — Веб / UI дизайнер</title>
+
+<!--
+  ШРИФТЫ
+  Сейчас подключены Google Fonts:
+  - "Playfair Display" (жирный засечный) — для заголовков (имя, "Услуги", "Контакты" и т.д.)
+  - "Inter" — для основного текста и кнопок
+  Если захочешь поменять шрифты — замени ссылку ниже на нужную из fonts.google.com
+  и поменяй значения в CSS-переменных --font-display и --font-body чуть ниже.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* ===== ЦВЕТА (можно менять здесь, применится везде) ===== */
+    --bg-card-dark:  #16171b;   /* фон страницы и тёмных карточек/кнопок */
+    --accent:        #d8f7a1;   /* кислотно-зелёный акцент (текст, кнопки, карточки услуг) */
+    --text-light:    #ececec;   /* светлый текст на тёмном фоне */
+    --text-muted:    #a9abb3;   /* приглушённый серый текст */
+    --text-dark:     #16171b;   /* тёмный текст на зелёном фоне */
+
+    /* ===== ШРИФТЫ ===== */
+    --font-display: 'Playfair Display', Georgia, serif; /* заголовки — поменяй тут при смене шрифта */
+    --font-body: 'Inter', -apple-system, sans-serif;     /* основной текст — поменяй тут при смене шрифта */
+
+    /* ===== ОТСТУПЫ ===== */
+    --pad-x: 16px;   /* боковые отступы внутри карточек — уменьшай/увеличивай только тут */
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html, body{
+    background: var(--bg-card-dark);
+  }
+
+  body{
+    font-family: var(--font-body);
+    color: var(--text-light);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  a{ text-decoration:none; color:inherit; }
+
+  /* ---------- ОБЩАЯ КОЛОНКА ДЛЯ КАРТОЧЕК (кроме hero) ---------- */
+  .page{
+    width:100%;
+    max-width: 420px;   /* ширина мобильной "таплинк"-карточки */
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+
+  /* ---------- ОБЩИЕ КАРТОЧКИ ---------- */
+  .card{
+    border-radius: 24px;
+    overflow:hidden;
+  }
+
+  .card-dark{
+    background: var(--bg-card-dark);
+    padding: 28px var(--pad-x);
+  }
+
+  /* ---------- КНОПКИ ---------- */
+  .btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    width:100%;
+    padding:16px 20px;
+    border-radius: 14px;
+    font-family: var(--font-body);
+    font-weight:600;
+    font-size:15px;
+    cursor:pointer;
+    border:none;
+  }
+
+  .btn-accent{
+    background: var(--accent);
+    color: var(--text-dark);
+  }
+
+  .btn-dark{
+    background: var(--bg-card-dark);
+    color: var(--text-light);
+  }
+
+  .btn .arrow{
+    font-size:16px;
+  }
+
+  /* ---------- HERO (первый блок — на весь экран) ---------- */
+  .hero{
+    position:relative;
+    width:100%;
+    min-height:100vh;         /* занимает всю высоту экрана */
+    min-height:100dvh;        /* корректная высота на мобильных (учитывает адресную строку) */
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+
+    /*
+      ФОТО: замени ссылку в url() ниже на свою.
+      Верхний градиент делает плавный переход от фото к фоновому цвету страницы.
+    */
+    background-image:
+      linear-gradient(to bottom, rgba(22,23,27,0) 55%, var(--bg-card-dark) 96%),
+      url('https://cdn.jsdelivr.net/gh/xarnakcom/img_xarnak.com/Image_1_comp.jpg'); /* <-- вставь ссылку на фото */
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+
+  .hero-handle{
+    position:absolute;
+    top:20px;
+    left:0;
+    right:0;
+    text-align:center;
+    font-size:13px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing:0.02em;
+    font-family: var(--font-body);
+  }
+
+  .hero-text{
+    position:relative;
+    width:100%;
+    max-width:420px;
+    padding: 24px var(--pad-x) 40px;
+  }
+
+  .hero-name{
+    font-family: var(--font-display);
+    font-weight:800;
+    font-size: clamp(32px, 9vw, 42px);
+    line-height:1.05;
+    color: var(--accent);
+  }
+
+  .hero-role{
+    font-family: var(--font-body);
+    font-size:13px;
+    font-weight:500;
+    color: var(--text-light);
+    display:inline-block;
+    margin: 4px 0 10px;
+  }
+
+  .hero-desc{
+    font-size:15px;
+    line-height:1.5;
+    color: var(--text-light);
+    margin: 12px 0 20px;
+  }
+
+  /* ---------- УСЛУГИ ---------- */
+  .section-title{
+    font-family: var(--font-display);
+    font-weight:800;
+    font-size: 30px;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .section-intro{
+    font-size:14px;
+    line-height:1.6;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .service-card{
+    background: var(--accent);
+    color: var(--text-dark);
+    border-radius: 18px;
+    padding: 20px;
+    margin-top: 18px;
+  }
+
+  .service-title{
+    font-family: var(--font-display);
+    font-weight:700;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .service-desc{
+    font-size:14px;
+    line-height:1.5;
+    margin-bottom: 16px;
+  }
+
+  /* ---------- CTA / КОНТАКТЫ ---------- */
+  .cta-card{
+    background: var(--accent);
+    color: var(--text-dark);
+    padding: 28px var(--pad-x);
+    margin: 0 var(--pad-x);   /* сдвигает сам блок внутрь на pad-x, чтобы его край совпадал с краем зелёных карточек услуг (те вложены в card-dark и уже сдвинуты его паддингом) */
+  }
+
+  .cta-title{
+    font-family: var(--font-display);
+    font-weight:800;
+    font-size: 26px;
+    line-height:1.2;
+    margin-bottom: 18px;
+  }
+
+  .contacts-card{
+    background: var(--bg-card-dark);
+    padding: 28px var(--pad-x);
+  }
+
+  .contacts-title{
+    font-family: var(--font-display);
+    font-weight:800;
+    font-size: 26px;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .social-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:12px;
+  }
+
+  .social-item{
+    background: var(--accent);
+    color: var(--text-dark);
+    aspect-ratio: 1;
+    border-radius: 16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+  }
+
+  .contacts-note{
+    font-size:11px;
+    color: var(--text-muted);
+    margin-top:16px;
+    line-height:1.4;
+  }
+</style>
+</head>
+<body>
+
+  <!-- ================= HERO — первый блок на 100% экрана, адаптируется под любое устройство ================= -->
+  <section class="hero">
+    <!-- Ник в шапке фото. Замени текст на свой @handle -->
+    <div class="hero-handle">@твой_ник</div>
+
+    <div class="hero-text">
+      <div class="hero-name">Имя<br>Фамилия</div>
+      <div class="hero-role">( Веб / UI дизайнер )</div>
+      <p class="hero-desc">
+        Создаю функциональные и уникальные сайты, приносящие прибыль бизнесу
+        <!-- замени описание на своё -->
+      </p>
+      <!-- ССЫЛКА №1: кнопка связи (например, Telegram) -->
+      <a href="https://t.me/ТВОЙ_НИК" class="btn btn-accent" target="_blank" rel="noopener">
+        Связаться в Телеграм <span class="arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="page">
+
+    <!-- ================= УСЛУГИ ================= -->
+    <div class="card card-dark">
+      <div class="section-title">Услуги</div>
+      <p class="section-intro">
+        Перед любой услугой провожу диагностику — выясняем подробно задачу, чем могу помочь
+      </p>
+      <p class="section-intro">
+        Это бесплатный формат работы, длится 30-40 минут
+      </p>
+
+      <!-- Карточка услуги 1 -->
+      <div class="service-card">
+        <div class="service-title">Веб-дизайн / UX/UI</div>
+        <p class="service-desc">
+          Интернет-магазины / сервисы / корпоративные сайты / сайты-портфолио / лендинги
+          <!-- замени текст услуги на свой -->
+        </p>
+        <!-- ССЫЛКА №2: заявка на услугу 1 -->
+        <a href="https://t.me/ТВОЙ_НИК?text=Хочу+заказать+веб-дизайн" class="btn btn-dark" target="_blank" rel="noopener">
+          Заказать <span class="arrow">↗</span>
+        </a>
+      </div>
+
+      <!-- Карточка услуги 2 -->
+      <div class="service-card">
+        <div class="service-title">Дизайн мобильных приложений</div>
+        <p class="service-desc">
+          iOs / Android / flow / анимация
+          <!-- замени текст услуги на свой -->
+        </p>
+        <!-- ССЫЛКА №3: заявка на услугу 2 -->
+        <a href="https://t.me/ТВОЙ_НИК?text=Хочу+заказать+дизайн+приложения" class="btn btn-dark" target="_blank" rel="noopener">
+          Заказать <span class="arrow">↗</span>
+        </a>
+      </div>
+
+      <!-- Карточка услуги 3 (например, Taplink-страница) -->
+      <div class="service-card">
+        <div class="service-title">Taplink</div>
+        <p class="service-desc">
+          Дизайн и настройка твоей Taplink-страницы
+          <!-- замени текст услуги на свой -->
+        </p>
+        <!-- ССЫЛКА №4: заявка на услугу 3 -->
+        <a href="https://t.me/ТВОЙ_НИК?text=Хочу+заказать+Taplink" class="btn btn-dark" target="_blank" rel="noopener">
+          Заказать <span class="arrow">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ================= CTA БЛОК ================= -->
+    <div class="card cta-card">
+      <div class="cta-title">Задизайним ваш уникальный проект? :)</div>
+      <!-- ССЫЛКА №5: основная CTA-кнопка -->
+      <a href="https://t.me/ТВОЙ_НИК" class="btn btn-dark" target="_blank" rel="noopener">
+        Связаться в Телеграм <span class="arrow">↗</span>
+      </a>
+    </div>
+
+    <!-- ================= КОНТАКТЫ / СОЦСЕТИ ================= -->
+    <div class="card contacts-card">
+      <div class="contacts-title">Контакты</div>
+      <div class="social-grid">
+        <!-- ССЫЛКА №6: Email -->
+        <a href="mailto:твоя_почта@example.com" class="social-item" title="Email">✉️</a>
+        <!-- ССЫЛКА №7: Telegram -->
+        <a href="https://t.me/ТВОЙ_НИК" class="social-item" target="_blank" rel="noopener" title="Telegram">✈️</a>
+        <!-- ССЫЛКА №8: WhatsApp -->
+        <a href="https://wa.me/79990000000" class="social-item" target="_blank" rel="noopener" title="WhatsApp">📞</a>
+        <!-- ССЫЛКА №9: YouTube -->
+        <a href="https://youtube.com/@ТВОЙ_КАНАЛ" class="social-item" target="_blank" rel="noopener" title="YouTube">▶️</a>
+        <!-- ССЫЛКА №10: VK -->
+        <a href="https://vk.com/ТВОЯ_СТРАНИЦА" class="social-item" target="_blank" rel="noopener" title="VK">VK</a>
+        <!-- ССЫЛКА №11: Instagram -->
+        <a href="https://instagram.com/ТВОЙ_НИК" class="social-item" target="_blank" rel="noopener" title="Instagram">📷</a>
+      </div>
+      <p class="contacts-note">
+        *инстаграм признан в России экстремистской организацией
+        <!-- убери эту строку, если не нужна дисклеймер-пометка -->
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

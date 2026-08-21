@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Имя Фамилия — Веб / UI дизайнер</title>
 
 <!--
@@ -38,6 +38,7 @@
 
   html, body{
     background: var(--bg-card-dark);
+    height:100%;
   }
 
   body{
@@ -100,19 +101,21 @@
     font-size:16px;
   }
 
-  /* ---------- HERO (первый блок — на весь экран) ---------- */
+  /* ---------- HERO (первый блок — на весь экран, фото заходит под статус-бар/панели браузера) ---------- */
   .hero{
     position:relative;
     width:100%;
-    min-height:100vh;         /* занимает всю высоту экрана */
-    min-height:100dvh;        /* корректная высота на мобильных (учитывает адресную строку) */
+    min-height:100vh;         /* запасной вариант для старых браузеров */
+    min-height:100svh;        /* минимальная высота — гарантирует, что фото покрывает экран, даже когда видны панели браузера сверху/снизу */
+    min-height:100lvh;        /* максимальная высота — фото остаётся на весь экран и когда панели браузера скрываются (нет "серой" полосы снизу) */
     display:flex;
     align-items:flex-end;
     justify-content:center;
 
     /*
       ФОТО: замени ссылку в url() ниже на свою.
-      Верхний градиент делает плавный переход от фото к фоновому цвету страницы.
+      Фон растянут на всю высоту .hero (включая область под статус-баром/адресной строкой) — за счёт этого картинка "заходит" под них.
+      Нижний градиент делает плавный переход от фото к фоновому цвету страницы.
     */
     background-image:
       linear-gradient(to bottom, rgba(22,23,27,0) 55%, var(--bg-card-dark) 96%),
@@ -124,12 +127,15 @@
 
   .hero-handle{
     position:absolute;
-    top:20px;
+    /* env(safe-area-inset-top) — отступ под "чёлку"/статус-бар, чтобы текст не перекрывался иконками, фото при этом всё равно уходит выше под них */
+    top: calc(14px + env(safe-area-inset-top));
     left:0;
     right:0;
     text-align:center;
-    font-size:13px;
-    color: rgba(255,255,255,0.7);
+    font-size:16px;                 /* было 13px — сделал крупнее */
+    font-weight:600;                /* добавил вес — контрастнее выглядит */
+    color: rgba(255,255,255,0.95);  /* было 0.7 — сделал контрастнее */
+    text-shadow: 0 1px 6px rgba(0,0,0,0.5); /* лёгкая тень, чтобы ник читался на любом фото */
     letter-spacing:0.02em;
     font-family: var(--font-body);
   }
@@ -138,7 +144,8 @@
     position:relative;
     width:100%;
     max-width:420px;
-    padding: 24px var(--pad-x) 40px;
+    /* снизу — небольшой отступ + safe-area (учитывает нижнюю панель/индикатор свайпа на iPhone), кнопка стоит ближе к самому краю экрана */
+    padding: 24px var(--pad-x) calc(16px + env(safe-area-inset-bottom));
   }
 
   .hero-name{

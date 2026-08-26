@@ -5,34 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Имя Фамилия — Веб / UI дизайнер</title>
 
-<!--
-  ШРИФТЫ
-  Сейчас подключены Google Fonts:
-  - "Playfair Display" (жирный засечный) — для заголовков (имя, "Услуги", "Контакты" и т.д.)
-  - "Inter" — для основного текста и кнопок
-  Если захочешь поменять шрифты — замени ссылку ниже на нужную из fonts.google.com
-  и поменяй значения в CSS-переменных --font-display и --font-body чуть ниже.
--->
+<!--ШРИФТЫ
+  font-display - Заголовки
+  font-body - Основной текст.-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/gh/xarnakcom/nauryz-red-keds/fonts.css" rel="stylesheet">
 
 <style>
   :root{
-    /* ===== ЦВЕТА (можно менять здесь, применится везде) ===== */
+    /* ЦВЕТА */
     --bg-card-dark:  #16171b;   /* фон страницы и тёмных карточек/кнопок */
     --accent:        #d8f7a1;   /* кислотно-зелёный акцент (текст, кнопки, карточки услуг) */
     --text-light:    #ececec;   /* светлый текст на тёмном фоне */
     --text-muted:    #a9abb3;   /* приглушённый серый текст */
     --text-dark:     #16171b;   /* тёмный текст на зелёном фоне */
 
-    /* ===== ШРИФТЫ ===== */
-    --font-display: 'NauryzRedKeds', Georgia, serif; /* заголовки — поменяй тут при смене шрифта */
+    /*  ШРИФТЫ  */
+    --font-display: 'NauryzRedKeds', Georgia, serif;     /* заголовки — поменяй тут при смене шрифта */
     --font-body: 'Inter', -apple-system, sans-serif;     /* основной текст — поменяй тут при смене шрифта */
 
-    /* ===== ОТСТУПЫ ===== */
-    --pad-x: 16px;   /* боковые отступы внутри карточек — уменьшай/увеличивай только тут */
+    /*  ОТСТУПЫ  */
+    --pad-x: 16px;   /* боковые отступы внутри карточек */
   }
 
   *{ box-sizing: border-box; margin:0; padding:0; }
@@ -51,7 +47,7 @@
 
   a{ text-decoration:none; color:inherit; }
 
-  /* ---------- ОБЩАЯ КОЛОНКА ДЛЯ КАРТОЧЕК (кроме hero) ---------- */
+  /* ОБЩАЯ КОЛОНКА ДЛЯ КАРТОЧЕК (кроме hero) */
   .page{
     width:100%;
     max-width: 420px;   /* ширина мобильной "таплинк"-карточки */

@@ -254,10 +254,52 @@
     margin-top:16px;
     line-height:1.4;
   }
+
+    /* ---------- ПРЕЛОАДЕР ---------- */
+  #preloader{
+    position: fixed;
+    inset: 0;
+    background: var(--bg-card-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 300ms ease;
+  }
+
+  #preloader.hide{
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #preloader img{
+    width: 45vw;
+    max-width: 45vh;
+    height: auto;
+  }
+
+  body.preload-active{
+    overflow: hidden;
+  }
+
+  body:not(.preload-active) .page,
+  body:not(.preload-active) .hero{
+    animation: fadeInPage 300ms ease;
+  }
+
+  @keyframes fadeInPage{
+    from{ opacity: 0; }
+    to{ opacity: 1; }
+  }
 </style>
 </head>
-<body>
+<body class="preload-active">
 
+  <div id="preloader">
+    <img src="https://raw.githubusercontent.com/xarnakcom/img_xarnak.com/main/xarnak.com.svg" alt="Логотип">
+  </div>
+  
   <!-- ================= HERO — первый блок на 100% экрана, адаптируется под любое устройство ================= -->
   <section class="hero">
     <!-- Ник в шапке фото. Замени текст на свой @handle -->
@@ -362,6 +404,19 @@
     </div>
 
   </div>
-
+  
+   <script>
+    window.addEventListener('load', function () {
+      var preloader = document.getElementById('preloader');
+      setTimeout(function () {
+        preloader.classList.add('hide');
+        document.body.classList.remove('preload-active');
+        setTimeout(function () {
+          preloader.remove();
+        }, 300);
+      }, 3000);
+    });
+  </script>
+  
 </body>
 </html>

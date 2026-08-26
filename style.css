@@ -1,1 +1,274 @@
+  :root{
+    /* ЦВЕТА */
+    --bg-card-dark:  #16171b;   /* фон страницы и тёмных карточек/кнопок */
+    --accent:        #d8f7a1;   /* кислотно-зелёный акцент (текст, кнопки, карточки услуг) */
+    --text-light:    #ececec;   /* светлый текст на тёмном фоне */
+    --text-muted:    #a9abb3;   /* приглушённый серый текст */
+    --text-dark:     #16171b;   /* тёмный текст на зелёном фоне */
 
+    /*  ШРИФТЫ  */
+    --font-display: 'NauryzRedKeds', Georgia, serif;     /* заголовки — поменяй тут при смене шрифта */
+    --font-body: 'Inter', -apple-system, sans-serif;     /* основной текст — поменяй тут при смене шрифта */
+
+    /*  ОТСТУПЫ  */
+    --pad-x: 16px;   /* боковые отступы внутри карточек */
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html, body{
+    background: var(--bg-card-dark);
+  }
+
+  body{
+    font-family: var(--font-body);
+    color: var(--text-light);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  a{ text-decoration:none; color:inherit; }
+
+  /* ОБЩАЯ КОЛОНКА ДЛЯ КАРТОЧЕК (кроме hero) */
+  .page{
+    width:100%;
+    max-width: 420px;   /* ширина мобильной "таплинк"-карточки */
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+
+  /* ---------- ОБЩИЕ КАРТОЧКИ ---------- */
+  .card{
+    border-radius: 24px;
+    overflow:hidden;
+  }
+
+  .card-dark{
+    background: var(--bg-card-dark);
+    padding: 28px var(--pad-x);
+  }
+
+  /* ---------- КНОПКИ ---------- */
+  .btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    width:100%;
+    padding:16px 20px;
+    border-radius: 14px;
+    font-family: var(--font-body);
+    font-weight:600;
+    font-size:15px;
+    cursor:pointer;
+    border:none;
+  }
+
+  .btn-accent{
+    background: var(--accent);
+    color: var(--text-dark);
+  }
+
+  .btn-dark{
+    background: var(--bg-card-dark);
+    color: var(--text-light);
+  }
+
+  .btn .arrow{
+    font-size:16px;
+  }
+
+  /* ---------- HERO (первый блок — на весь экран) ---------- */
+  .hero{
+    position:relative;
+    width:100%;
+    min-height:100vh;         /* занимает всю высоту экрана */
+    min-height:100dvh;        /* корректная высота на мобильных (учитывает адресную строку) */
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+
+    /*
+      ФОТО: замени ссылку в url() ниже на свою.
+      Верхний градиент делает плавный переход от фото к фоновому цвету страницы.
+    */
+    background-image:
+      linear-gradient(to bottom, rgba(22,23,27,0) 55%, var(--bg-card-dark) 96%),
+      url('img/Image_3_comp.jpg'); /* <-- вставь ссылку на фото */
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+
+  .hero-handle{
+    position:absolute;
+    top:20px;
+    left:0;
+    right:0;
+    text-align:center;
+    font-size:13px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing:0.02em;
+    font-family: var(--font-body);
+  }
+
+  .hero-text{
+    position:relative;
+    width:100%;
+    max-width:420px;
+    padding: 24px var(--pad-x);
+  }
+
+  .hero-name{
+    font-family: var(--font-display);
+    font-weight:800;
+    font-size: clamp(32px, 9vw, 42px);
+    line-height:1.05;
+    color: var(--accent);
+  }
+
+  .hero-role{
+    font-family: var(--font-body);
+    font-size:13px;
+    font-weight:500;
+    color: var(--text-light);
+    display:inline-block;
+    margin: 4px 0 10px;
+  }
+
+  .hero-desc{
+    font-size:15px;
+    line-height:1.5;
+    color: var(--text-light);
+    margin: 12px 0 20px;
+  }
+
+  /* ---------- УСЛУГИ ---------- */
+  .section-title{
+    font-family: var(--font-display);
+    font-weight:800;
+    font-size: 30px;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .section-intro{
+    font-size:14px;
+    line-height:1.6;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .service-card{
+    background: var(--accent);
+    color: var(--text-dark);
+    border-radius: 18px;
+    padding: 20px;
+    margin-top: 18px;
+  }
+
+  .service-title{
+    font-family: var(--font-display);
+    font-weight:700;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .service-desc{
+    font-size:14px;
+    line-height:1.5;
+    margin-bottom: 16px;
+  }
+
+  /* ---------- CTA / КОНТАКТЫ ---------- */
+  .cta-card{
+    background: var(--accent);
+    color: var(--text-dark);
+    padding: 28px var(--pad-x);
+    margin: 0 var(--pad-x);   /* сдвигает сам блок внутрь на pad-x, чтобы его край совпадал с краем зелёных карточек услуг (те вложены в card-dark и уже сдвинуты его паддингом) */
+  }
+
+  .cta-title{
+    font-family: var(--font-display);
+    font-weight:800;
+    font-size: 26px;
+    line-height:1.2;
+    margin-bottom: 18px;
+  }
+
+  .contacts-card{
+    background: var(--bg-card-dark);
+    padding: 28px var(--pad-x);
+  }
+
+  .contacts-title{
+    font-family: var(--font-display);
+    font-weight:800;
+    font-size: 26px;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .social-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:12px;
+  }
+
+  .social-item{
+    background: var(--accent);
+    color: var(--text-dark);
+    aspect-ratio: 1;
+    border-radius: 16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+  }
+
+  .contacts-note{
+    font-size:11px;
+    color: var(--text-muted);
+    margin-top:16px;
+    line-height:1.4;
+  }
+
+    /* ---------- ПРЕЛОАДЕР ---------- */
+  #preloader{
+    position: fixed;
+    inset: 0;
+    background: var(--bg-card-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 300ms ease;
+  }
+
+  #preloader.hide{
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #preloader img{
+    width: 45vw;
+    max-width: 45vh;
+    height: auto;
+  }
+
+  body.preload-active{
+    overflow: hidden;
+  }
+
+  body:not(.preload-active) .page,
+  body:not(.preload-active) .hero{
+    animation: fadeInPage 300ms ease;
+  }
+
+  @keyframes fadeInPage{
+    from{ opacity: 0; }
+    to{ opacity: 1; }
+  }

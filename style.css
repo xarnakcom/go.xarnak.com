@@ -6,11 +6,11 @@
     --text-muted:    #a9abb3;   /* приглушённый серый текст */
     --text-dark:     #16171b;   /* тёмный текст на зелёном фоне */
 
-    /*  ШРИФТЫ  */
+    /* ШРИФТЫ */
     --font-display: 'NauryzRedKeds', Georgia, serif;     /* заголовки — поменяй тут при смене шрифта */
     --font-body: 'Inter', -apple-system, sans-serif;     /* основной текст — поменяй тут при смене шрифта */
 
-    /*  ОТСТУПЫ  */
+    /* ОТСТУПЫ */
     --pad-x: 16px;   /* боковые отступы внутри карточек */
   }
 
@@ -39,7 +39,7 @@
     gap:0;
   }
 
-  /* ---------- ОБЩИЕ КАРТОЧКИ ---------- */
+  /* ОБЩИЕ КАРТОЧКИ */
   .card{
     border-radius: 24px;
     overflow:hidden;
@@ -50,7 +50,7 @@
     padding: 28px var(--pad-x);
   }
 
-  /* ---------- КНОПКИ ---------- */
+  /* КНОПКИ */
   .btn{
     display:flex;
     align-items:center;
@@ -80,7 +80,7 @@
     font-size:16px;
   }
 
-  /* ---------- HERO (первый блок — на весь экран) ---------- */
+  /* HERO (первый блок — на весь экран) */
   .hero{
     position:relative;
     width:100%;
@@ -149,7 +149,7 @@
     margin: 12px 0 20px;
   }
 
-  /* ---------- УСЛУГИ ---------- */
+  /* УСЛУГИ */
   .section-title{
     font-family: var(--font-display);
     font-weight:800;
@@ -186,7 +186,7 @@
     margin-bottom: 16px;
   }
 
-  /* ---------- CTA / КОНТАКТЫ ---------- */
+  /* CTA / КОНТАКТЫ */
   .cta-card{
     background: var(--accent);
     color: var(--text-dark);
@@ -239,7 +239,7 @@
     line-height:1.4;
   }
 
-    /* ---------- ПРЕЛОАДЕР ---------- */
+    /* ПРЕЛОАДЕР */
   #preloader{
     position: fixed;
     inset: 0;

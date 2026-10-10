@@ -1,0 +1,61 @@
+/* ПОСТЫ */
+.posts-card{
+  background: var(--bg-card-dark);
+  padding: 28px var(--pad-x) 48px;
+}
+
+.posts-title{
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.post{
+  background: #262626;
+  border-radius: 18px;
+  padding: 20px;
+  margin-top: 14px;
+}
+
+.post-date{
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.post-title{
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.post-img{
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.post-text{
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-light);
+  white-space: pre-line; /* переносы строк из JSON */
+}
+
+.post-link{
+  margin-top: 14px;
+  background: var(--accent);
+  color: var(--text-dark);
+}
+
+.posts-empty{
+  font-size: 14px;
+  color: var(--text-muted);
+}

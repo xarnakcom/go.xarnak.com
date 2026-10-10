@@ -6,13 +6,5 @@
     "image": "",
     "link": "",
     "linkText": ""
-  },
-  {
-    "date": "2026-09-03",
-    "title": "Пост с картинкой и ссылкой",
-    "text": "Картинку положи в папку img/ и укажи путь ниже.",
-    "image": "img/example.jpg",
-    "link": "https://xarnak.com",
-    "linkText": "Открыть xarnak.com"
   }
 ]

@@ -1,0 +1,40 @@
+{
+  "links": [
+    {
+      "title": "Xarnak.com",
+      "desc": "Проект тур-компании",
+      "url": "https://xarnak.com",
+      "button": "Открыть"
+    },
+    {
+      "title": "Портфолио",
+      "desc": "Мои работы в дизайне и не только",
+      "url": "https://portfolio.xarnak.com",
+      "button": "Открыть"
+    },
+    {
+      "title": "HoaPrint.ru",
+      "desc": "Сайт магазина канцтоваров и копировальных услуг. Проект закрыт с 2024г.",
+      "url": "https://hoa.xarnak.com",
+      "button": "Открыть"
+    }
+  ],
+  "contacts": [
+    {
+      "type": "telegram",
+      "url": "https://t.me/xarnakcom"
+    },
+    {
+      "type": "whatsapp",
+      "url": "https://wa.me/79324708445"
+    },
+    {
+      "type": "instagram",
+      "url": "https://instagram.com/xarnakcom"
+    },
+    {
+      "type": "email",
+      "url": "sam@xarnak.com"
+    }
+  ]
+}
